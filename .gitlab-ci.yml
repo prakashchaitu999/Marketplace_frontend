@@ -1,0 +1,52 @@
+stages:
+  - install
+  - lint
+  - test
+  - build
+
+install:
+  stage: install
+  image: node:12.9.0
+  script:
+    - npm install --silent
+  artifacts:
+    paths:
+      - node_modules/
+  tags:
+    - immersive-cgi-w7-dotnet
+
+lint:
+  stage: lint
+  image: node:12.9.0
+  script:
+    - npm run lint
+  artifacts:
+    paths:
+      - node_modules/
+  tags:
+    - immersive-cgi-w7-dotnet
+
+variables:
+  CLI_VERSION: 8.0.3
+  DOCKER_DRIVER: overlay
+
+test:
+  stage: test
+  image: trion/ng-cli-karma:${CLI_VERSION}
+  allow_failure: false
+  script:
+    - ng test --progress false --watch false
+  tags:
+    - immersive-cgi-w7-dotnet
+
+build:
+  stage: build
+  image: trion/ng-cli
+  script:
+    - ng build --prod
+  artifacts:
+    paths:
+      - dist/
+  tags:
+    - immersive-cgi-w7-dotnet
+

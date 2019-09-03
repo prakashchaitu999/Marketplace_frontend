@@ -1,0 +1,18 @@
+.example-card {
+  height:400px;
+  width:300px;
+}
+
+.example-header-image {
+  background-image: url('/img/SlackIcon.png');
+  background-size: cover;
+}
+.mat-card-image {
+  padding-left:40px;
+  padding-right: 30px;
+  height: 250px;
+  width: 257px;
+}
+.action {
+  margin-left: 120px;
+}
